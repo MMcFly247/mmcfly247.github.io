@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martin Bissonnette | Nanotechnology Engineer</title>
+    <link href="https://fonts.cdnfonts.com/css/roobert" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roobert', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Page Transitions */
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1600&h=900&fit=crop') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #666;
+        }
+
+        .nav-home {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .back-button:hover {
+            color: #666;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* About Section */
+        .about {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #e0e0e0;
+            flex-shrink: 0;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-links a:hover {
+            color: #666;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .experience-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .experience-header .date {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .company {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            list-style-position: inside;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #e0e0e0;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .project-card:hover h3 {
+            color: #666;
+        }
+
+        .project-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #f5f5f5;
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #666;
+        }
+
+        /* Project Detail Page */
+        .project-detail-hero {
+            height: 50vh;
+            background: #e0e0e0;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 3rem;
+        }
+
+        .project-detail h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .project-detail h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+        }
+
+        .project-detail p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .project-detail ul {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .project-detail li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .skill-category p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Awards */
+        .awards-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .award-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .award-item:last-child {
+            border-bottom: none;
+        }
+
+        .award-name {
+            font-weight: 700;
+        }
+
+        .award-date {
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Education */
+        .education-item {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        .education-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .degree {
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-details {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: #f5f5f5;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: #666;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-image {
+                margin: 0 auto;
+            }
+
+            .contact-links {
+                justify-content: center;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-detail h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a class="nav-home" onclick="showPage('home')">Martin Bissonnette</a></li>
+            <li><a onclick="scrollToSection('about')">About</a></li>
+            <li><a onclick="scrollToSection('experience')">Experience</a></li>
+            <li><a onclick="scrollToSection('projects')">Projects</a></li>
+            <li><a onclick="scrollToSection('skills')">Skills</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Martin Bissonnette</h1>
+                <p>Nanotechnology Engineer</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about">
+                <img src="https://via.placeholder.com/200" alt="Profile" class="profile-image">
+                <div class="about-content">
+                    <p>Motivated Nanotechnology Engineering student with hands-on experience in microfabrication, semiconductor and photonic packaging systems for both manufacturing and R&D.</p>
+                    <p>Currently working as a Research Engineer at Irradiant Technologies in Boston, MA, where I focus on metrology, materials analysis, and precision fabrication for advancing biomedical and materials research.</p>
+                    <div class="contact-links">
+                        <a href="mailto:m2bisson@uwaterloo.ca">Email</a>
+                        <a href="https://linkedin.com/in/martin-bissonnette" target="_blank">LinkedIn</a>
+                        <a href="tel:343-370-3399">343-370-3399</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="container">
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Research Engineer</h3>
+                    <span class="date">September 2025 - May 2026</span>
+                </div>
+                <p class="company">Irradiant Technologies | Boston, Massachusetts</p>
+                <ul>
+                    <li>Operated various metrology tools such as AFM, refractometers, interferometers, filmetrics profilometer and UV-Vis at the Harvard CNS facilities to validate material properties of porous silicon scaffolds and reductions printed silver structures.</li>
+                    <li>Created DOEs for testing a wide variety of print solutions for Silver reduction printing in order to improve print quality and minimum print energy by analyzing 2 photon cross sections of photo-activators.</li>
+                    <li>Researched and implemented the use of silver nano particles as well of graphene quantum dots within print solutions as a method of reducing print energies and silver blooming by providing nucleation sites for silver reduction reactions.</li>
+                    <li>Implemented an Opentrons OT-2 system into workflows in order to automate chemical experiments, creating a user interface as well as custom integrated lab ware for the system.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Assembly Process Intern</h3>
+                    <span class="date">Winter 2025</span>
+                </div>
+                <p class="company">C2MI | Bromont, Quebec</p>
+                <ul>
+                    <li>Performed microfabrication and testing in a Class 1000 cleanroom using semiconductor and optical packaging tools.</li>
+                    <li>Performed R&D on photonic wire bonds as an alternative photonic interconnect method in collaboration with IBM, increasing optical performance by 20%.</li>
+                    <li>Created a procedure to create laser-induced graphene patterns for electroplating as a novel method of PCB creation.</li>
+                    <li>Documented and tested a wafer-level packaging method to embed chips into re-molded wafers, allowing further processing and higher package density.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Engineering Student</h3>
+                    <span class="date">Summer 2024</span>
+                </div>
+                <p class="company">Lactalis Canada | Ingleside, Ontario</p>
+                <ul>
+                    <li>Developed a data-analysis program for sensor data, optimizing heat exchanger placement and improving energy efficiency.</li>
+                    <li>Created CAD designs for parts and comprehensive floor plans, ensuring precise planning and streamlined manufacturing processes.</li>
+                    <li>Analyzed machine processing rates to identify production bottlenecks, quantifying cost savings and enhancing overall throughput.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Part Time Research Assistant</h3>
+                    <span class="date">Summer 2025</span>
+                </div>
+                <p class="company">SMART LAB | Waterloo, Ontario</p>
+                <ul>
+                    <li>Synthesized hydrogels according to lab procedure using sterile wet lab techniques.</li>
+                    <li>Conducted quantitative material characterization to evaluate and tailor hydrogel properties for targeted drug-delivery.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" onclick="showProject('plotter')">
+                    <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=600&h=400&fit=crop" alt="2D Plotter" class="project-image">
+                    <div class="project-content">
+                        <h3>2D Plotter & Laser Cutter</h3>
+                        <p>Converted a 3D printer into a versatile 2D plotting and laser cutting system for creating technical drawings, artwork, and precision cutting applications.</p>
+                        <div class="project-tags">
+                            <span class="tag">Mechanical Design</span>
+                            <span class="tag">Arduino</span>
+                            <span class="tag">CAD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('optics')">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=400&fit=crop" alt="Integrated Optics" class="project-image">
+                    <div class="project-content">
+                        <h3>UW Silica Integrated Optics</h3>
+                        <p>Co-founded a University design team for Nanotechnology Engineering students, focusing on photonic research and laser systems development.</p>
+                        <div class="project-tags">
+                            <span class="tag">Photonics</span>
+                            <span class="tag">Research</span>
+                            <span class="tag">Leadership</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('motor')">
+                    <img src="https://images.unsplash.com/photo-1581092918484-8313e1f151e6?w=600&h=400&fit=crop" alt="Motor Development" class="project-image">
+                    <div class="project-content">
+                        <h3>Transverse Flux Motor Development</h3>
+                        <p>Collaborated with Waterloop's propulsion team to design and manufacture TFMs for hyperloop technology displays.</p>
+                        <div class="project-tags">
+                            <span class="tag">Electric Motors</span>
+                            <span class="tag">Manufacturing</span>
+                            <span class="tag">Team Collaboration</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="showProject('placeholder')">
+                    <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=400&fit=crop" alt="Placeholder Project" class="project-image">
+                    <div class="project-content">
+                        <h3>Placeholder Project</h3>
+                        <p>Description of another project will go here. This is a placeholder for future work to be added to the portfolio.</p>
+                        <div class="project-tags">
+                            <span class="tag">Tag 1</span>
+                            <span class="tag">Tag 2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Lab Equipment</h3>
+                    <p>AFM, SEM, XRD, Microscopy, Spectroscopy (UV-Vis, FTIR, Raman), TMA, TGA, DSC</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Lab Experience</h3>
+                    <p>Bio/Organic Chemistry Techniques, Cleanroom Protocols, Optical Alignment, Laser Operation & Safety</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Software</h3>
+                    <p>SolidWorks, AutoCAD, Fusion, FEMM, KLayout, Ansys</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <p>Python, MATLAB, Excel, Arduino, HTML, CSS</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <p>Fluent in English and French (DELF Certified at B1 Level)</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Trade Skills</h3>
+                    <p>Welding, Metallurgy, Carpentry, Electrical, Automotive</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards Section -->
+        <section id="awards" class="container">
+            <h2 class="section-title">Awards & Recognition</h2>
+            <div class="awards-list">
+                <div class="award-item">
+                    <span class="award-name">George T. Kanab Scholarship</span>
+                    <span class="award-date">June 2023 & January 2024</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-name">University of Waterloo President's Scholarship</span>
+                    <span class="award-date">September 2023</span>
+                </div>
+                <div class="award-item">
+                    <span class="award-name">Knights of Columbus Scholarship for Academic Excellence</span>
+                    <span class="award-date">June 2023</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                <h3>University of Waterloo</h3>
+                <p class="degree">Bachelor of Applied Sciences in Honours Nanotechnology Engineering</p>
+                <div class="education-details">
+                    <span>Ontario, Canada</span>
+                    <span>Fall 2023 - Spring 2028</span>
+                </div>
+                <p style="margin-top: 1rem; color: #666; font-weight: 600;">Current Average: 82%</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Martin Bissonnette. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">Built for GitHub Pages</p>
+        </footer>
+    </div>
+
+    <!-- Project Detail Pages -->
+    <div id="project-plotter" class="page">
+        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=1600&h=900&fit=crop');"></div>
+        <div class="container project-detail">
+            <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
+            <h1>2D Plotter & Laser Cutter</h1>
+            
+            <div class="project-tags" style="margin-bottom: 2rem;">
+                <span class="tag">Mechanical Design</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">CAD</span>
+                <span class="tag">Laser Systems</span>
+            </div>
+
+            <h2>Overview</h2>
+            <p>Converted a 3D printer into a versatile 2D plotting and laser cutting system. This project demonstrates the flexibility of repurposing existing hardware for new applications, combining mechanical engineering with electronics and software.</p>
+
+            <h2>Key Features</h2>
+            <ul>
+                <li>Custom firmware modifications for 2D operation modes</li>
+                <li>Specialized tool heads for both plotting and laser cutting</li>
+                <li>Precision control system for accurate line work and cutting</li>
+                <li>Safety features including emergency stops and laser protection</li>
+            </ul>
+
+            <h2>Applications</h2>
+            <p>The system has been used for creating technical drawings, producing artwork, and performing precision cutting on various materials. It serves as both a creative tool and a practical fabrication device.</p>
+
+            <h2>Technical Details</h2>
+            <p>Add more technical specifications, challenges overcome, and future improvements here.</p>
+        </div>
+    </div>
+
+    <div id="project-optics" class="page">
+        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1600&h=900&fit=crop');"></div>
+        <div class="container project-detail">
+            <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
+            <h1>UW Silica Integrated Optics</h1>
+            
+            <div class="project-tags" style="margin-bottom: 2rem;">
+                <span class="tag">Photonics</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">Laser Systems</span>
+                <span class="tag">Research</span>
+                <span class="tag">Leadership</span>
+            </div>
+
+            <h2>Overview</h2>
+            <p>Co-founded an official University design team specifically aimed at Nanotechnology Engineering students. The team focuses on integrated photonics research and development.</p>
+
+            <h2>Leadership Role</h2>
+            <p>As co-founder, established the team structure, recruited members, and defined research objectives. Led the initiative to gain official university recognition and access to laboratory facilities.</p>
+
+            <h2>Technical Projects</h2>
+            <ul>
+                <li>Led research and fabrication of a high-speed programmable laser shutter system using Arduino and custom hardware components</li>
+                <li>Actively working in the optics lab creating DOEs (Design of Experiments) to test for optimal laser parameters for desired voxel creation</li>
+                <li>Developing techniques for silica-based integrated optical circuits</li>
+            </ul>
+
+            <h2>Impact</h2>
+            <p>The team provides hands-on experience for nanotechnology engineering students, bridging the gap between theoretical knowledge and practical photonics applications.</p>
+        </div>
+    </div>
+
+    <div id="project-motor" class="page">
+        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1581092918484-8313e1f151e6?w=1600&h=900&fit=crop');"></div>
+        <div class="container project-detail">
+            <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
+            <h1>Transverse Flux Motor Development</h1>
+            
+            <div class="project-tags" style="margin-bottom: 2rem;">
+                <span class="tag">Electric Motors</span>
+                <span class="tag">Manufacturing</span>
+                <span class="tag">Team Collaboration</span>
+                <span class="tag">Hyperloop</span>
+            </div>
+
+            <h2>Overview</h2>
+            <p>Collaborated with Waterloop's propulsion team to design and manufacture Transverse Flux Motors (TFMs) for use in hyperloop technology displays. This project involved working with a multidisciplinary team to bring cutting-edge motor technology to life.</p>
+
+            <h2>Technical Contribution</h2>
+            <p>Developed a precision copper coil winding system to build electric motors, significantly enhancing manufacturing speed and accuracy. The system allowed for consistent, repeatable coil production critical for motor performance.</p>
+
+            <h2>Team Collaboration</h2>
+            <ul>
+                <li>Worked alongside mechanical, electrical, and software engineers</li>
+                <li>Participated in design reviews and iterative prototyping</li>
+                <li>Contributed to manufacturing process optimization</li>
+            </ul>
+
+            <h2>Duration</h2>
+            <p>September 2023 - January 2024</p>
+        </div>
+    </div>
+
+    <div id="project-placeholder" class="page">
+        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1600&h=900&fit=crop');"></div>
+        <div class="container project-detail">
+            <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
+            <h1>Placeholder Project</h1>
+            
+            <div class="project-tags" style="margin-bottom: 2rem;">
+                <span class="tag">Tag 1</span>
+                <span class="tag">Tag 2</span>
+                <span class="tag">Tag 3</span>
+            </div>
+
+            <h2>Overview</h2>
+            <p>This is a placeholder project page. Replace this content with details about your actual project.</p>
+
+            <h2>Project Details</h2>
+            <p>Add information about the project goals, methodology, and outcomes here.</p>
+
+            <h2>Technical Challenges</h2>
+            <ul>
+                <li>Challenge 1 and how it was solved</li>
+                <li>Challenge 2 and how it was solved</li>
+                <li>Challenge 3 and how it was solved</li>
+            </ul>
+
+            <h2>Results</h2>
+            <p>Describe the impact and results of this project.</p>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            if (pageId === 'home') {
+                document.getElementById('home').classList.add('active');
+            } else {
+                document.getElementById(pageId).classList.add('active');
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showProject(projectId) {
+            showPage('project-' + projectId);
+        }
+
+        function scrollToSection(sectionId) {
+            // Make sure we're on the home page
+            if (!document.getElementById('home').classList.contains('active')) {
+                showPage('home');
+                setTimeout(() => {
+                    scrollToElement(sectionId);
+                }, 100);
+            } else {
+                scrollToElement(sectionId);
+            }
+        }
+
+        function scrollToElement(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = element.offsetTop - navHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+            } else {
+                nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
