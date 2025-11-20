@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Martin Bissonnette | Nanotechnology Engineer</title>
+    <link rel="icon" type="image/png" href="images/MB.png">
     <link href="https://fonts.cdnfonts.com/css/roobert" rel="stylesheet">
     <style>
         * {
@@ -185,9 +186,23 @@
         .experience-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
             margin-bottom: 0.5rem;
             flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-title-group {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            flex-shrink: 0;
         }
 
         .experience-header h3 {
@@ -473,7 +488,7 @@
         <section id="about" class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about">
-                <img src="images/cover_photo.jpg" alt="Profile" class="profile-image">
+                <img src="images/MB.png" alt="Martin Bissonnette" class="profile-image">
                 <div class="about-content">
                     <p>Motivated Nanotechnology Engineering student with hands-on experience in microfabrication, semiconductor and photonic packaging systems for both manufacturing and R&D.</p>
                     <p>Currently working as a Research Engineer at Irradiant Technologies in Boston, MA, where I focus on metrology, materials analysis, and precision fabrication for advancing biomedical and materials research.</p>
@@ -492,7 +507,10 @@
             
             <div class="experience-item">
                 <div class="experience-header">
-                    <h3>Research Engineer</h3>
+                    <div class="experience-title-group">
+                        <img src="images/placeholder" alt="Irradiant Technologies" class="company-logo">
+                        <h3>Research Engineer</h3>
+                    </div>
                     <span class="date">September 2025 - May 2026</span>
                 </div>
                 <p class="company">Irradiant Technologies | Boston, Massachusetts</p>
@@ -506,7 +524,10 @@
 
             <div class="experience-item">
                 <div class="experience-header">
-                    <h3>Assembly Process Intern</h3>
+                    <div class="experience-title-group">
+                        <img src="images/placeholder" alt="C2MI" class="company-logo">
+                        <h3>Assembly Process Intern</h3>
+                    </div>
                     <span class="date">Winter 2025</span>
                 </div>
                 <p class="company">C2MI | Bromont, Quebec</p>
@@ -520,7 +541,25 @@
 
             <div class="experience-item">
                 <div class="experience-header">
-                    <h3>Engineering Student</h3>
+                    <div class="experience-title-group">
+                        <img src="images/placeholder" alt="SMART LAB" class="company-logo">
+                        <h3>Part Time Research Assistant</h3>
+                    </div>
+                    <span class="date">Summer 2025</span>
+                </div>
+                <p class="company">SMART LAB | Waterloo, Ontario</p>
+                <ul>
+                    <li>Synthesized hydrogels according to lab procedure using sterile wet lab techniques.</li>
+                    <li>Conducted quantitative material characterization to evaluate and tailor hydrogel properties for targeted drug-delivery.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title-group">
+                        <img src="images/placeholder" alt="Lactalis Canada" class="company-logo">
+                        <h3>Engineering Student</h3>
+                    </div>
                     <span class="date">Summer 2024</span>
                 </div>
                 <p class="company">Lactalis Canada | Ingleside, Ontario</p>
@@ -528,18 +567,6 @@
                     <li>Developed a data-analysis program for sensor data, optimizing heat exchanger placement and improving energy efficiency.</li>
                     <li>Created CAD designs for parts and comprehensive floor plans, ensuring precise planning and streamlined manufacturing processes.</li>
                     <li>Analyzed machine processing rates to identify production bottlenecks, quantifying cost savings and enhancing overall throughput.</li>
-                </ul>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3>Part Time Research Assistant</h3>
-                    <span class="date">Summer 2025</span>
-                </div>
-                <p class="company">SMART LAB | Waterloo, Ontario</p>
-                <ul>
-                    <li>Synthesized hydrogels according to lab procedure using sterile wet lab techniques.</li>
-                    <li>Conducted quantitative material characterization to evaluate and tailor hydrogel properties for targeted drug-delivery.</li>
                 </ul>
             </div>
         </section>
@@ -562,7 +589,7 @@
                 </div>
 
                 <div class="project-card" onclick="showProject('optics')">
-                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=400&fit=crop" alt="Integrated Optics" class="project-image">
+                    <img src="images/UWSiO Logo Rectangle.png" alt="UW Silica Integrated Optics" class="project-image">
                     <div class="project-content">
                         <h3>UW Silica Integrated Optics</h3>
                         <p>Co-founded a University design team for Nanotechnology Engineering students, focusing on photonic research and laser systems development.</p>
@@ -575,7 +602,7 @@
                 </div>
 
                 <div class="project-card" onclick="showProject('motor')">
-                    <img src="https://images.unsplash.com/photo-1581092918484-8313e1f151e6?w=600&h=400&fit=crop" alt="Motor Development" class="project-image">
+                    <img src="images/wloop_logo.jpg" alt="Waterloop" class="project-image">
                     <div class="project-content">
                         <h3>Transverse Flux Motor Development</h3>
                         <p>Collaborated with Waterloop's propulsion team to design and manufacture TFMs for hyperloop technology displays.</p>
@@ -655,8 +682,13 @@
         <section id="education" class="container">
             <h2 class="section-title">Education</h2>
             <div class="education-item">
-                <h3>University of Waterloo</h3>
-                <p class="degree">Bachelor of Applied Sciences in Honours Nanotechnology Engineering</p>
+                <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem;">
+                    <img src="images/University_of_Waterloo_seal.svg.png" alt="University of Waterloo" style="width: 80px; height: 80px; object-fit: contain;">
+                    <div>
+                        <h3>University of Waterloo</h3>
+                        <p class="degree">Bachelor of Applied Sciences in Honours Nanotechnology Engineering</p>
+                    </div>
+                </div>
                 <div class="education-details">
                     <span>Ontario, Canada</span>
                     <span>Fall 2023 - Spring 2028</span>
@@ -706,7 +738,7 @@
     </div>
 
     <div id="project-optics" class="page">
-        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1600&h=900&fit=crop');"></div>
+        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/UWSiO Logo Rectangle.png'); background-size: cover; background-position: center;"></div>
         <div class="container project-detail">
             <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
             <h1>UW Silica Integrated Optics</h1>
@@ -738,7 +770,7 @@
     </div>
 
     <div id="project-motor" class="page">
-        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1581092918484-8313e1f151e6?w=1600&h=900&fit=crop');"></div>
+        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/wloop_logo.jpg'); background-size: cover; background-position: center;"></div>
         <div class="container project-detail">
             <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
             <h1>Transverse Flux Motor Development</h1>
