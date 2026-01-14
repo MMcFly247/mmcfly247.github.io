@@ -817,7 +817,7 @@
         <section id="education" class="container">
             <h2 class="section-title">Education</h2>
             <div class="education-item">
-                <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
                     <img src="images/University_of_Waterloo_seal.svg.png" alt="University of Waterloo" style="width: 80px; height: 80px; object-fit: contain;">
                     <div>
                         <h3>University of Waterloo</h3>
@@ -828,7 +828,7 @@
                     <span>Ontario, Canada</span>
                     <span>Fall 2023 - Spring 2028</span>
                 </div>
-                <p style="margin-top: 1rem; color: #666; font-weight: 600;">Current Average: 82%</p>
+                <p style="margin-top: 1rem; color: #4a9eff; font-weight: 600;">Current Average: 82%</p>
             </div>
         </section>
 
@@ -840,8 +840,79 @@
     </div>
 
     <!-- Project Detail Pages -->
+    <div id="project-uwsio" class="page">
+        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/UWSIO_BANNER.png'); background-size: cover; background-position: center;"></div>
+        <div class="container project-detail">
+            <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
+            <h1>UW Silica Integrated Optics</h1>
+            
+            <div class="project-tags" style="margin-bottom: 2rem;">
+                <span class="tag">Photonics</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">Laser Systems</span>
+                <span class="tag">Research</span>
+                <span class="tag">Leadership</span>
+            </div>
+
+            <h2>Overview</h2>
+            <p>Co-founded an official University design team specifically aimed at Nanotechnology Engineering students. The team focuses on integrated photonics research and development, providing hands-on experience that bridges the gap between theoretical knowledge and practical applications.</p>
+
+            <h2>Leadership Role</h2>
+            <p>As co-founder, I established the team structure, recruited members, and defined research objectives. Led the initiative to gain official university recognition and access to laboratory facilities at the University of Waterloo.</p>
+
+            <h2>Technical Projects</h2>
+            <ul>
+                <li>Led research and fabrication of a high-speed programmable laser shutter system using Arduino and custom hardware components</li>
+                <li>Actively working in the optics lab creating DOEs (Design of Experiments) to test for optimal laser parameters for desired voxel creation</li>
+                <li>Developing techniques for silica-based integrated optical circuits</li>
+                <li>Establishing laboratory protocols and safety procedures for team operations</li>
+            </ul>
+
+            <h2>Impact</h2>
+            <p>The team provides invaluable hands-on experience for nanotechnology engineering students, fostering innovation and practical skills development in the field of integrated photonics.</p>
+
+            <h2>Timeline</h2>
+            <p>December 2023 - Ongoing</p>
+        </div>
+    </div>
+
+    <div id="project-waterloop" class="page">
+        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/Waterloop3-600x217.png'); background-size: cover; background-position: center;"></div>
+        <div class="container project-detail">
+            <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
+            <h1>Transverse Flux Motor Development</h1>
+            
+            <div class="project-tags" style="margin-bottom: 2rem;">
+                <span class="tag">Electric Motors</span>
+                <span class="tag">Manufacturing</span>
+                <span class="tag">Team Collaboration</span>
+                <span class="tag">Hyperloop</span>
+            </div>
+
+            <h2>Overview</h2>
+            <p>Collaborated with Waterloop's propulsion team to design and manufacture Transverse Flux Motors (TFMs) for use in hyperloop technology displays. This project involved working with a multidisciplinary team to bring cutting-edge motor technology to life.</p>
+
+            <h2>Technical Contribution</h2>
+            <p>Developed a precision copper coil winding system to build electric motors, significantly enhancing manufacturing speed and accuracy. The system allowed for consistent, repeatable coil production critical for motor performance in hyperloop applications.</p>
+
+            <h2>Team Collaboration</h2>
+            <ul>
+                <li>Worked alongside mechanical, electrical, and software engineers</li>
+                <li>Participated in design reviews and iterative prototyping sessions</li>
+                <li>Contributed to manufacturing process optimization</li>
+                <li>Helped establish quality control procedures for motor production</li>
+            </ul>
+
+            <h2>Technologies Used</h2>
+            <p>CAD design, precision manufacturing, electric motor theory, collaborative engineering tools</p>
+
+            <h2>Duration</h2>
+            <p>September 2023 - January 2024</p>
+        </div>
+    </div>
+
     <div id="project-plotter" class="page">
-        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=1600&h=900&fit=crop');"></div>
+        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=1600&h=900&fit=crop');"></div>
         <div class="container project-detail">
             <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
             <h1>2D Plotter & Laser Cutter</h1>
@@ -868,100 +939,40 @@
             <p>The system has been used for creating technical drawings, producing artwork, and performing precision cutting on various materials. It serves as both a creative tool and a practical fabrication device.</p>
 
             <h2>Technical Details</h2>
-            <p>Add more technical specifications, challenges overcome, and future improvements here.</p>
+            <p>Built using modified 3D printer hardware, Arduino-based control system, custom G-code interpretation, and safety interlocks for laser operation.</p>
         </div>
     </div>
 
-    <div id="project-optics" class="page">
-        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/UWSiO Logo Rectangle.png'); background-size: cover; background-position: center;"></div>
+    <div id="project-washout" class="page">
+        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1600&h=900&fit=crop');"></div>
         <div class="container project-detail">
             <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
-            <h1>UW Silica Integrated Optics</h1>
+            <h1>Automated Washout System</h1>
             
             <div class="project-tags" style="margin-bottom: 2rem;">
-                <span class="tag">Photonics</span>
                 <span class="tag">Arduino</span>
-                <span class="tag">Laser Systems</span>
-                <span class="tag">Research</span>
-                <span class="tag">Leadership</span>
+                <span class="tag">Material Science</span>
+                <span class="tag">Mechanical Systems</span>
+                <span class="tag">Safety Engineering</span>
             </div>
 
             <h2>Overview</h2>
-            <p>Co-founded an official University design team specifically aimed at Nanotechnology Engineering students. The team focuses on integrated photonics research and development.</p>
+            <p>Designed and manufactured a fully enclosed and automated system to washout print samples using PGMEA and other corrosive solvents. This system was developed during my work at Irradiant Technologies to improve safety and efficiency in the sample processing workflow.</p>
 
-            <h2>Leadership Role</h2>
-            <p>As co-founder, established the team structure, recruited members, and defined research objectives. Led the initiative to gain official university recognition and access to laboratory facilities.</p>
-
-            <h2>Technical Projects</h2>
+            <h2>Key Features</h2>
             <ul>
-                <li>Led research and fabrication of a high-speed programmable laser shutter system using Arduino and custom hardware components</li>
-                <li>Actively working in the optics lab creating DOEs (Design of Experiments) to test for optimal laser parameters for desired voxel creation</li>
-                <li>Developing techniques for silica-based integrated optical circuits</li>
+                <li>Fully enclosed design to contain hazardous fumes and prevent exposure</li>
+                <li>Automated pumping system for precise solvent delivery</li>
+                <li>Arduino-based control system for programmable wash cycles</li>
+                <li>Chemical-resistant materials selected based on material science principles</li>
+                <li>Safety interlocks and emergency shutdown procedures</li>
             </ul>
+
+            <h2>Technical Approach</h2>
+            <p>Combined principles from Arduino programming, material science for chemical compatibility, and mechanical engineering for the pumping and containment systems. The design prioritized operator safety while maintaining efficient sample processing.</p>
 
             <h2>Impact</h2>
-            <p>The team provides hands-on experience for nanotechnology engineering students, bridging the gap between theoretical knowledge and practical photonics applications.</p>
-        </div>
-    </div>
-
-    <div id="project-motor" class="page">
-        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/wloop_logo.jpg'); background-size: cover; background-position: center;"></div>
-        <div class="container project-detail">
-            <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
-            <h1>Transverse Flux Motor Development</h1>
-            
-            <div class="project-tags" style="margin-bottom: 2rem;">
-                <span class="tag">Electric Motors</span>
-                <span class="tag">Manufacturing</span>
-                <span class="tag">Team Collaboration</span>
-                <span class="tag">Hyperloop</span>
-            </div>
-
-            <h2>Overview</h2>
-            <p>Collaborated with Waterloop's propulsion team to design and manufacture Transverse Flux Motors (TFMs) for use in hyperloop technology displays. This project involved working with a multidisciplinary team to bring cutting-edge motor technology to life.</p>
-
-            <h2>Technical Contribution</h2>
-            <p>Developed a precision copper coil winding system to build electric motors, significantly enhancing manufacturing speed and accuracy. The system allowed for consistent, repeatable coil production critical for motor performance.</p>
-
-            <h2>Team Collaboration</h2>
-            <ul>
-                <li>Worked alongside mechanical, electrical, and software engineers</li>
-                <li>Participated in design reviews and iterative prototyping</li>
-                <li>Contributed to manufacturing process optimization</li>
-            </ul>
-
-            <h2>Duration</h2>
-            <p>September 2023 - January 2024</p>
-        </div>
-    </div>
-
-    <div id="project-placeholder" class="page">
-        <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1600&h=900&fit=crop');"></div>
-        <div class="container project-detail">
-            <a class="back-button" onclick="showPage('home')">← Back to Portfolio</a>
-            <h1>Placeholder Project</h1>
-            
-            <div class="project-tags" style="margin-bottom: 2rem;">
-                <span class="tag">Tag 1</span>
-                <span class="tag">Tag 2</span>
-                <span class="tag">Tag 3</span>
-            </div>
-
-            <h2>Overview</h2>
-            <p>This is a placeholder project page. Replace this content with details about your actual project.</p>
-
-            <h2>Project Details</h2>
-            <p>Add information about the project goals, methodology, and outcomes here.</p>
-
-            <h2>Technical Challenges</h2>
-            <ul>
-                <li>Challenge 1 and how it was solved</li>
-                <li>Challenge 2 and how it was solved</li>
-                <li>Challenge 3 and how it was solved</li>
-            </ul>
-
-            <h2>Results</h2>
-            <p>Describe the impact and results of this project.</p>
+            <p>Significantly improved lab safety by eliminating direct human contact with corrosive solvents while increasing throughput and consistency in sample washing procedures.</p>
         </div>
     </div>
 
@@ -974,8 +985,14 @@
             
             if (pageId === 'home') {
                 document.getElementById('home').classList.add('active');
+                // Reset scroll-based nav highlighting
+                setTimeout(updateActiveNav, 100);
             } else {
                 document.getElementById(pageId).classList.add('active');
+                // Clear nav highlighting on project pages
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
             }
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1011,6 +1028,11 @@
 
         // Update active nav item on scroll
         function updateActiveNav() {
+            // Only update if we're on the home page
+            if (!document.getElementById('home').classList.contains('active')) {
+                return;
+            }
+
             const sections = ['about', 'experience', 'projects', 'skills'];
             const navHeight = document.querySelector('nav').offsetHeight;
             const scrollPosition = window.scrollY + navHeight + 100;
@@ -1037,15 +1059,13 @@
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (window.scrollY > 100) {
-                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.7)';
             } else {
-                nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
             }
 
             // Update active navigation item
-            if (document.getElementById('home').classList.contains('active')) {
-                updateActiveNav();
-            }
+            updateActiveNav();
         });
 
         // Initial check for active section
@@ -1053,3 +1073,5 @@
     </script>
 </body>
 </html>
+
+
