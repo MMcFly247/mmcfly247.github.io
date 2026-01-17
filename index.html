@@ -9,16 +9,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a class="nav-home" href="index.html">Martin Bissonnette</a></li>
-            <li><a id="nav-about" onclick="scrollToSection('about')">About</a></li>
-            <li><a id="nav-experience" onclick="scrollToSection('experience')">Experience</a></li>
-            <li><a id="nav-projects" onclick="scrollToSection('projects')">Projects</a></li>
-            <li><a id="nav-skills" onclick="scrollToSection('skills')">Skills</a></li>
-        </ul>
-    </nav>
+    
+   <!-- Navigation -->
+<nav>
+    <a class="nav-home" href="index.html">Home</a>
+    <ul class="nav-menu">
+        <li><a id="nav-about" onclick="scrollToSection('about')">About</a></li>
+        <li><a id="nav-experience" onclick="scrollToSection('experience')">Experience</a></li>
+        <li><a id="nav-projects" onclick="scrollToSection('projects')">Projects</a></li>
+        <li><a id="nav-skills" onclick="scrollToSection('skills')">Skills</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -32,7 +38,7 @@
     <section id="about" class="container">
         <h2 class="section-title">About Me</h2>
         <div class="about">
-            <img src="images/cover_photo.jpg" alt="Martin Bissonnette" class="profile-image">
+            <img src="images/martin_climbing_cropped.jpg" alt="Martin Bissonnette" class="profile-image">
             <div class="about-content">
                 <p>Motivated Nanotechnology Engineering student with hands-on experience in microfabrication, semiconductor and photonic packaging systems for both manufacturing and R&D.</p>
                 <p>Passionate about leveraging precision fabrication, optical technologies, and materials analysis to advance biomedical and materials research. Currently working as a Research Engineer at Irradiant Technologies in Boston, MA.</p>
@@ -158,7 +164,7 @@
             <a href="projects/waterloop.html" class="project-card">
                 <img src="images/wloop_logo.jpg" alt="Waterloop" class="project-image">
                 <div class="project-content">
-                    <h3>Transverse Flux Motor Development</h3>
+                    <h3>Waterloop ~ Hyperloop Design Team</h3>
                     <p>Collaborated with Waterloop's propulsion team to design and manufacture TFMs for hyperloop technology displays.</p>
                     <div class="project-tags">
                         <span class="tag">Electric Motors</span>
