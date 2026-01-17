@@ -9,19 +9,25 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a class="nav-home" href="../index.html">Martin Bissonnette</a></li>
-            <li><a href="../index.html#about">About</a></li>
-            <li><a href="../index.html#experience">Experience</a></li>
-            <li><a href="../index.html#projects">Projects</a></li>
-            <li><a href="../index.html#skills">Skills</a></li>
-        </ul>
-    </nav>
+
+  <!-- Navigation -->
+<nav>
+    <a class="nav-home" href="../index.html">Martin Bissonnette</a>
+    <ul class="nav-menu">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
 
     <!-- Project Hero -->
-    <div class="project-detail-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/UWSIO_BANNER.png'); background-size: cover; background-position: center;"></div>
+    <div class="project-detail-hero" style="background-image: url('../images/UWSIO_BANNER.png');"></div>
 
     <!-- Project Content -->
     <div class="container project-detail">
@@ -62,5 +68,14 @@
         <p>&copy; 2025 Martin Bissonnette. All rights reserved.</p>
         <p style="margin-top: 0.5rem;">Built for GitHub Pages</p>
     </footer>
+    
+<script>
+function toggleMenu() {
+    const navMenu = document.querySelector('.nav-menu');
+    const hamburger = document.querySelector('.hamburger');
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+</script>
 </body>
 </html>
