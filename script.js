@@ -27,6 +27,33 @@ themeToggle?.addEventListener("click", () => {
 });
 
 /* ============================================================
+   CONTACT POPOUT
+   ============================================================ */
+const contactWrap = document.querySelector("[data-contact]");
+const contactBtn  = document.querySelector("[data-contact-btn]");
+const contactMenu = document.querySelector("[data-contact-menu]");
+
+function setContactOpen(open) {
+  if (!contactBtn || !contactMenu) return;
+  contactBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  contactMenu.setAttribute("aria-hidden", open ? "false" : "true");
+}
+contactBtn?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  const isOpen = contactBtn.getAttribute("aria-expanded") === "true";
+  setContactOpen(!isOpen);
+});
+document.addEventListener("click", (e) => {
+  if (!contactWrap?.contains(e.target)) setContactOpen(false);
+});
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") setContactOpen(false);
+});
+contactMenu?.querySelectorAll("a").forEach((a) =>
+  a.addEventListener("click", () => setContactOpen(false))
+);
+
+/* ============================================================
    APPLY INITIAL TWEAKS
    ============================================================ */
 function applyTweaks() {
@@ -211,8 +238,8 @@ const liveEl = document.querySelector("[data-live-time]");
 function updateLiveTime() {
   if (!liveEl) return;
   const now = new Date();
-  const opts = { hour: "2-digit", minute: "2-digit", timeZone: "America/New_York", hour12: false };
-  liveEl.textContent = new Intl.DateTimeFormat("en-CA", opts).format(now) + " EST · BOSTON";
+  const opts = { hour: "2-digit", minute: "2-digit", timeZone: "America/Toronto", hour12: false };
+  liveEl.textContent = new Intl.DateTimeFormat("en-CA", opts).format(now) + " EST · WATERLOO";
 }
 updateLiveTime();
 setInterval(updateLiveTime, 30 * 1000);
