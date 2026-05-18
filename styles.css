@@ -435,25 +435,49 @@ section + section { border-top: 1px dashed var(--line-soft); }
 }
 .chip {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
-  padding: 8px 14px;
+  padding: 8px 14px 8px 12px;
   border: 1px solid var(--line-soft);
   border-radius: 999px;
   background: var(--bg);
   font-family: "JetBrains Mono", monospace;
   font-size: 12px;
   color: var(--fg-strong);
-  transition: border-color 0.25s, color 0.25s, transform 0.25s;
+  transition: border-color 0.25s, color 0.25s, transform 0.25s, background 0.25s;
+  text-decoration: none;
 }
 .chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-.chip__k {
+.chip__icon {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
   color: var(--muted);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
+  flex: 0 0 18px;
+  transition: color 0.25s;
 }
+.chip:hover .chip__icon { color: var(--accent); }
+.chip__icon svg { width: 14px; height: 14px; display: block; }
+.chip__txt { display: inline-flex; align-items: baseline; gap: 8px; }
+.chip__k {
+  color: var(--fg-strong);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  transition: color 0.25s;
+}
+.chip:hover .chip__k { color: var(--accent); }
 .chip__v { letter-spacing: 0.02em; }
+.chip--accent {
+  border-color: color-mix(in oklab, var(--accent) 50%, var(--line-soft));
+  background: color-mix(in oklab, var(--accent) 8%, var(--bg));
+  color: var(--fg-em);
+}
+.chip--accent .chip__icon { color: var(--accent); }
+.chip--accent:hover {
+  background: color-mix(in oklab, var(--accent) 14%, var(--bg));
+}
 
 /* photo */
 .hero__photo {
