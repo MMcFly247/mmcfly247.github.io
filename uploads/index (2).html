@@ -13,20 +13,89 @@
 <body>
 
 <!-- ============================================================
-     GRAPH-PAPER BACKGROUND
+     ANIMATED WAFER / IC BACKGROUND
      ============================================================ -->
 <div class="bg-wafer" aria-hidden="true">
   <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
     <defs>
       <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-        <path d="M 40 0 L 0 0 0 40" class="stroke" stroke-width="1" />
+        <path d="M 40 0 L 0 0 0 40" class="stroke" stroke-width="0.5" />
       </pattern>
-      <pattern id="grid-major" width="200" height="200" patternUnits="userSpaceOnUse">
-        <rect width="200" height="200" fill="url(#grid)" />
-        <path d="M 200 0 L 0 0 0 200" class="stroke-major" stroke-width="1.4" fill="none" />
+      <pattern id="dots" width="80" height="80" patternUnits="userSpaceOnUse">
+        <circle cx="40" cy="40" r="1" fill="var(--pattern-stroke)" />
       </pattern>
     </defs>
-    <rect width="1600" height="1000" fill="url(#grid-major)" />
+
+    <!-- subtle grid -->
+    <rect width="1600" height="1000" fill="url(#grid)" />
+
+    <!-- WAFER (huge circle) -->
+    <g transform="translate(800,500)">
+      <circle r="460" class="die" stroke-width="1" />
+      <circle r="420" class="die" stroke-width="0.5" stroke-dasharray="3 6" opacity="0.5" />
+      <line x1="-460" y1="-340" x2="-340" y2="-460" class="die" stroke-width="1" />
+    </g>
+
+    <!-- IC DIES grid -->
+    <g class="die" stroke-width="1">
+      <!-- Row 1 -->
+      <rect x="220"  y="160"  width="120" height="120" />
+      <rect x="360"  y="160"  width="120" height="120" />
+      <rect x="1120" y="160"  width="120" height="120" />
+      <rect x="1260" y="160"  width="120" height="120" />
+      <!-- Row 2 -->
+      <rect x="160"  y="320"  width="120" height="120" />
+      <rect x="300"  y="320"  width="120" height="120" />
+      <rect x="1180" y="320"  width="120" height="120" />
+      <rect x="1320" y="320"  width="120" height="120" />
+      <!-- Row 3 -->
+      <rect x="220"  y="700"  width="120" height="120" />
+      <rect x="360"  y="700"  width="120" height="120" />
+      <rect x="1120" y="700"  width="120" height="120" />
+      <rect x="1260" y="700"  width="120" height="120" />
+    </g>
+
+    <!-- IC pin pads -->
+    <g class="pad">
+      <!-- top row pads on die at 220,160 -->
+      <g transform="translate(220,160)">
+        <rect x="14" y="-2" width="8" height="4" /><rect x="34" y="-2" width="8" height="4" /><rect x="54" y="-2" width="8" height="4" /><rect x="74" y="-2" width="8" height="4" /><rect x="94" y="-2" width="8" height="4" />
+        <rect x="14" y="118" width="8" height="4" /><rect x="34" y="118" width="8" height="4" /><rect x="54" y="118" width="8" height="4" /><rect x="74" y="118" width="8" height="4" /><rect x="94" y="118" width="8" height="4" />
+      </g>
+      <g transform="translate(1260,160)">
+        <rect x="14" y="-2" width="8" height="4" /><rect x="34" y="-2" width="8" height="4" /><rect x="54" y="-2" width="8" height="4" /><rect x="74" y="-2" width="8" height="4" /><rect x="94" y="-2" width="8" height="4" />
+      </g>
+      <g transform="translate(220,700)">
+        <rect x="14" y="-2" width="8" height="4" /><rect x="34" y="-2" width="8" height="4" /><rect x="54" y="-2" width="8" height="4" /><rect x="74" y="-2" width="8" height="4" /><rect x="94" y="-2" width="8" height="4" />
+      </g>
+    </g>
+
+    <!-- TRACES (interconnect) -->
+    <g class="trace" stroke-width="1.4" fill="none">
+      <path d="M 280 220 L 280 280 L 380 280 L 380 220" />
+      <path d="M 280 380 L 380 380 L 380 440 L 480 440" />
+      <path d="M 1180 220 L 1180 280 L 1320 280 L 1320 220" />
+      <path d="M 1240 380 L 1240 480 L 1180 480 L 1180 700" />
+      <path d="M 280 760 L 380 760 L 380 820 L 280 820 Z" />
+      <path d="M 100 500 L 1500 500" stroke-dasharray="2 4" opacity="0.5" />
+      <path d="M 600 100 L 600 900" stroke-dasharray="2 4" opacity="0.4" />
+      <path d="M 1000 100 L 1000 900" stroke-dasharray="2 4" opacity="0.4" />
+    </g>
+
+    <!-- ANIMATED PULSES traveling along bus lines -->
+    <g fill="none" stroke-width="3" stroke-linecap="round">
+      <path class="pulse"   d="M 100 220 L 700 220 L 700 500 L 1500 500" />
+      <path class="pulse b" d="M 100 780 L 500 780 L 500 600 L 1100 600 L 1100 220 L 1500 220" />
+      <path class="pulse c" d="M 200 100 L 200 400 L 900 400 L 900 900 L 1400 900" />
+    </g>
+
+    <!-- crosshair markers -->
+    <g class="die" stroke-width="1" opacity="0.6">
+      <g transform="translate(120,120)"><line x1="-8" x2="8" y1="0" y2="0" /><line x1="0" x2="0" y1="-8" y2="8" /></g>
+      <g transform="translate(1480,120)"><line x1="-8" x2="8" y1="0" y2="0" /><line x1="0" x2="0" y1="-8" y2="8" /></g>
+      <g transform="translate(120,880)"><line x1="-8" x2="8" y1="0" y2="0" /><line x1="0" x2="0" y1="-8" y2="8" /></g>
+      <g transform="translate(1480,880)"><line x1="-8" x2="8" y1="0" y2="0" /><line x1="0" x2="0" y1="-8" y2="8" /></g>
+    </g>
   </svg>
 </div>
 
@@ -59,33 +128,43 @@
           <span class="dot" aria-hidden="true"></span>
           <span>Get in touch</span>
         </div>
-        <a class="contact-menu__item" role="menuitem" href="/cdn-cgi/l/email-protection#1e737f6c6a6773747c776d6d5e79737f7772307d7173">
+        <a class="contact-menu__item" role="menuitem" href="mailto:martymjbiss@gmail.com">
           <span class="contact-menu__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 7 9-7"/></svg>
           </span>
           <span class="contact-menu__txt">
-            <span class="contact-menu__k">Personal</span>
-            <span class="contact-menu__v"><span class="__cf_email__" data-cfemail="91fcf0e3e5e8fcfbf3f8e2e2d1f6fcf0f8fdbff2fefc">[email&#160;protected]</span></span>
+            <span class="contact-menu__k">Email</span>
+            <span class="contact-menu__v">martymjbiss@gmail.com</span>
           </span>
           <span class="contact-menu__arrow" aria-hidden="true">↗</span>
         </a>
-        <a class="contact-menu__item" role="menuitem" href="/cdn-cgi/l/email-protection#c0adf2a2a9b3b3afae80b5b7a1b4a5b2acafafeea3a1">
+        <a class="contact-menu__item" role="menuitem" href="https://www.linkedin.com/in/martin-bissonnette-3b53b0291/" target="_blank" rel="noopener">
           <span class="contact-menu__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6a2 2 0 0 1-1.106 1.789l-7 3.5a2 2 0 0 1-1.788 0l-7-3.5A2 2 0 0 1 4 16v-6"/><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 12v5c0 .53.51 1 1 1l5 1 5-1c.49 0 1-.47 1-1v-5"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1s2.48 1.12 2.48 2.5ZM.22 8h4.56v14H.22V8Zm7.31 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 6.99V22h-4.56v-6.2c0-1.48-.03-3.38-2.06-3.38-2.07 0-2.39 1.62-2.39 3.28V22H7.53V8Z"/></svg>
           </span>
           <span class="contact-menu__txt">
-            <span class="contact-menu__k">School</span>
-            <span class="contact-menu__v"><span class="__cf_email__" data-cfemail="761b44141f05051918360301170213041a1919581517">[email&#160;protected]</span></span>
+            <span class="contact-menu__k">LinkedIn</span>
+            <span class="contact-menu__v">martin-bissonnette</span>
           </span>
           <span class="contact-menu__arrow" aria-hidden="true">↗</span>
         </a>
-        <a class="contact-menu__item" role="menuitem" href="tel:+13433703399">
+        <a class="contact-menu__item" role="menuitem" href="https://www.researchgate.net/profile/Martin-Bissonnette" target="_blank" rel="noopener">
           <span class="contact-menu__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.84 18.65V5.35h2.6v5.66h.05c.27-.46.66-.84 1.15-1.1.5-.27 1.06-.4 1.7-.4 1.05 0 1.86.3 2.43.92.57.6.86 1.51.86 2.7v5.52h-2.6v-5.11c0-.66-.13-1.14-.4-1.43-.27-.3-.65-.45-1.16-.45-.36 0-.69.08-.97.25-.28.16-.5.4-.66.7-.16.31-.24.7-.24 1.17v4.87h-2.6Zm-3.13 0H1.1V5.35h2.6v13.3Z"/><circle cx="20.1" cy="6.8" r="2.7"/></svg>
           </span>
           <span class="contact-menu__txt">
-            <span class="contact-menu__k">Phone</span>
-            <span class="contact-menu__v">(343) 370-3399</span>
+            <span class="contact-menu__k">ResearchGate</span>
+            <span class="contact-menu__v">Martin-Bissonnette</span>
+          </span>
+          <span class="contact-menu__arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="contact-menu__item" role="menuitem" href="https://github.com/martin-bissonnette" target="_blank" rel="noopener">
+          <span class="contact-menu__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.02 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.14 0 1.54-.02 2.78-.02 3.16 0 .31.21.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+          </span>
+          <span class="contact-menu__txt">
+            <span class="contact-menu__k">GitHub</span>
+            <span class="contact-menu__v">martin-bissonnette</span>
           </span>
           <span class="contact-menu__arrow" aria-hidden="true">↗</span>
         </a>
@@ -118,46 +197,65 @@
         starts Winter 2027.
       </p>
       <div class="hero__contacts">
-        <a class="chip" href="/cdn-cgi/l/email-protection#5d303c2f292430373f342e2e1d3a303c3431733e3230" aria-label="Email">
+        <a class="chip" href="mailto:martymjbiss@gmail.com" aria-label="Email">
           <span class="chip__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 7 9-7"/></svg>
           </span>
-          <span class="chip__k">email</span>
-        </a>
-        <a class="chip" href="tel:+13433703399" aria-label="Phone">
-          <span class="chip__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <span class="chip__txt">
+            <span class="chip__k">email</span>
+            <span class="chip__v">martymjbiss@gmail.com</span>
           </span>
-          <span class="chip__k">phone</span>
-        </a>
-        <a class="chip" href="https://github.com/martin-bissonnette" target="_blank" rel="noopener" aria-label="GitHub">
-          <span class="chip__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.02 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.14 0 1.54-.02 2.78-.02 3.16 0 .31.21.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-          </span>
-          <span class="chip__k">github</span>
         </a>
         <a class="chip" href="https://www.linkedin.com/in/martin-bissonnette-3b53b0291/" target="_blank" rel="noopener" aria-label="LinkedIn">
           <span class="chip__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1s2.48 1.12 2.48 2.5ZM.22 8h4.56v14H.22V8Zm7.31 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 6.99V22h-4.56v-6.2c0-1.48-.03-3.38-2.06-3.38-2.07 0-2.39 1.62-2.39 3.28V22H7.53V8Z"/></svg>
           </span>
-          <span class="chip__k">linkedin</span>
+          <span class="chip__txt">
+            <span class="chip__k">linkedin</span>
+            <span class="chip__v">martin-bissonnette ↗</span>
+          </span>
+        </a>
+        <a class="chip" href="https://github.com/martin-bissonnette" target="_blank" rel="noopener" aria-label="GitHub">
+          <span class="chip__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.02 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.14 0 1.54-.02 2.78-.02 3.16 0 .31.21.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+          </span>
+          <span class="chip__txt">
+            <span class="chip__k">github</span>
+            <span class="chip__v">martin-bissonnette ↗</span>
+          </span>
         </a>
         <a class="chip" href="https://www.researchgate.net/profile/Martin-Bissonnette" target="_blank" rel="noopener" aria-label="ResearchGate">
           <span class="chip__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.5 17V7h4a2.5 2.5 0 0 1 0 5h-4m3.5 0 4 5"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.84 18.65V5.35h2.6v5.66h.05c.27-.46.66-.84 1.15-1.1.5-.27 1.06-.4 1.7-.4 1.05 0 1.86.3 2.43.92.57.6.86 1.51.86 2.7v5.52h-2.6v-5.11c0-.66-.13-1.14-.4-1.43-.27-.3-.65-.45-1.16-.45-.36 0-.69.08-.97.25-.28.16-.5.4-.66.7-.16.31-.24.7-.24 1.17v4.87h-2.6Zm-3.13 0H1.1V5.35h2.6v13.3Z"/><circle cx="20.1" cy="6.8" r="2.7"/></svg>
           </span>
-          <span class="chip__k">researchgate</span>
+          <span class="chip__txt">
+            <span class="chip__k">researchgate</span>
+            <span class="chip__v">Martin-Bissonnette ↗</span>
+          </span>
         </a>
-        <a class="chip chip--accent" href="media/Martin Bissonnette Resume.pdf" target="_blank" rel="noopener" aria-label="Resume PDF">
+        <a class="chip" href="tel:+13433703399" aria-label="Phone">
+          <span class="chip__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          </span>
+          <span class="chip__txt">
+            <span class="chip__k">phone</span>
+            <span class="chip__v">+1 (343) 370-3399</span>
+          </span>
+        </a>
+        <a class="chip chip--accent" href="assets/Martin Bissonnette Resume.pdf" target="_blank" rel="noopener" aria-label="Resume PDF">
           <span class="chip__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
           </span>
-          <span class="chip__k">resume ↓</span>
+          <span class="chip__txt">
+            <span class="chip__k">resume</span>
+            <span class="chip__v">Download PDF ↓</span>
+          </span>
         </a>
       </div>
       <div class="hero__meta">
         <span class="kv"><b>Status</b><span class="dot">●</span> In school · Upcoming Winter 2027 co-op</span>
         <span class="kv">Based in Canada &amp; US</span>
+        <span class="kv"><b>GPA</b> 84%</span>
       </div>
     </div>
 
@@ -166,19 +264,6 @@
       <figcaption class="photo-cap">N 45° 25′ · ON, CA</figcaption>
     </figure>
   </div>
-
-  <div class="hero__about" id="about">
-    <aside class="about__aside">
-      <dl>
-        <dt>last role</dt>      <dd>Research Engineer @ Irradiant Technologies</dd>
-        <dt>next co-op</dt>     <dd>Winter 2027 · open to offers</dd>
-        <dt>focus</dt>          <dd>Semiconductor &amp; photonic packaging</dd>
-        <dt>school</dt>         <dd>UWaterloo · Nanotechnology Engineering B.A.Sc.</dd>
-        <dt>graduating</dt>     <dd>Spring 2028</dd>
-        <dt>languages</dt>      <dd>Fluent in English &amp; French</dd>
-      </dl>
-    </aside>
-  </div>
 </header>
 
 <!-- ============================================================
@@ -186,11 +271,44 @@
      ============================================================ -->
 <div data-sections-root>
 
+  <!-- ABOUT -->
+  <section id="about" data-section="about" data-screen-label="About" class="reveal">
+    <div class="section-head">
+      <div>
+        <div class="section-head__num">§ 01 · ABOUT</div>
+        <h2 class="section-head__title">From <em>wet lab</em><br/>to <em>cleanroom</em>.</h2>
+      </div>
+      <div class="section-head__right">
+</div>
+    </div>
+
+    <div class="about__grid">
+      <div>
+        <p class="about__lede">Motivated Nanotechnology Engineering student with hands-on experience in nano fabrication and semiconductor &amp; photonic packaging — for both manufacturing and R&amp;D.</p>
+        <div class="about__body">
+          <p>My passion lies at the frontier of nanofabrication, where micro-scale breakthroughs drive the future of photonics and chip technology. To create something new from just an idea and watch it take physical form is the ultimate reward of engineering, and I aspire to dedicate my career to chasing that moment of creation.</p>
+          <p>Outside the lab I'm usually playing one of a dozen sports, messing around in the garage or spending time with those closest to me.</p>
+        </div>
+      </div>
+      <aside class="about__aside">
+        <dl>
+          <dt>last role</dt>      <dd>Research Engineer @ Irradiant Technologies</dd>
+          <dt>next co-op</dt>     <dd>Winter 2027 · open to offers</dd>
+          <dt>focus</dt>          <dd>Semiconductor &amp; photonic packaging</dd>
+          <dt>school</dt>         <dd>UWaterloo · Nanotechnology Engineering B.A.Sc.</dd>
+          <dt>graduating</dt>     <dd>Spring 2028</dd>
+          <dt>languages</dt>      <dd>Fluent in English &amp; French</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
   <!-- EXPERIENCE -->
   <section id="experience" data-section="experience" data-screen-label="Experience" class="reveal">
     <div class="section-head">
       <div>
-        <h2 class="section-head__title">Work Experience</h2>
+        <div class="section-head__num">§ 02 · WORK</div>
+        <h2 class="section-head__title">Where I've <em>built</em> things.</h2>
       </div>
       <div class="section-head__right">
 </div>
@@ -207,29 +325,30 @@
         <div class="exp__brief">
           <h3 class="exp__role">Materials &amp; Packaging Engineer</h3>
           <p class="exp__company">Irradiant Technologies <span class="sep">/</span> <span class="loc">Boston, Massachusetts</span></p>
-          <p class="exp__summary">Materials &amp; Packaging Engineer on DARPA <strong>AMME</strong> 3D-microsystem work — supported proposals securing <strong>$4M+</strong> in awards and a <strong>$1.8M</strong> Harvard-CNS-validated milestone, drove <strong>10×</strong> packaging yield, and helped land a <strong>$500K Coherent</strong> contract.</p>
+          <p class="exp__summary">Materials-team lead on a <strong>$14M DARPA</strong> contract for 3D non-planar microsystems — secured a <strong>$1.8M milestone</strong>, shipped a company-wide UV-dicing SOP, and helped land a <strong>$500K Coherent contract</strong>.</p>
         </div>
         <span class="exp__cue" aria-hidden="true"><span>Open</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <template class="exp__details">
           <div class="exp__stats">
-            <div class="exp__stat"><b>$4M+</b><span>DARPA AMME awards</span></div>
-            <div class="exp__stat"><b>$1.8M</b><span>milestone payment</span></div>
+            <div class="exp__stat"><b>$14M</b><span>DARPA contract</span></div>
+            <div class="exp__stat"><b>$1.8M</b><span>milestone secured</span></div>
             <div class="exp__stat"><b>$500K</b><span>Coherent contract</span></div>
             <div class="exp__stat"><b>10×</b><span>yield &amp; throughput</span></div>
+            <div class="exp__stat"><b>1 wk → 3 d</b><span>process time</span></div>
           </div>
           <ul class="exp__bullets">
-            <li>Developed <strong>semiconductor packaging</strong> methods for proprietary nano-porous scaffold materials — improving quality, yield &amp; throughput <strong>10×</strong> and enabling a <strong>$500K Coherent contract</strong>.</li>
-            <li>Advanced the development of high-fidelity <strong>3D micro-electronic systems</strong> under DARPA's <strong>AMME program</strong>, supporting proposals that secured <strong>over $4M</strong> in contract awards.</li>
-            <li>Conducted <strong>AFM &amp; SEM</strong> measurement cycles at <strong>Harvard CNS</strong> (Trained User) that directly contributed to a <strong>$1.8M milestone payment</strong> and multiple customer developments; processed data in Gwyddion &amp; Fiji.</li>
-            <li>Designed and produced <strong>photosensitive silver-reduction materials</strong> for multi-photon 3D lithography — optimizing for conductivity, surface quality, and sub-micron resolution.</li>
-            <li>Implemented a <strong>multi-FOV stitching feature</strong> for the point-scan lithography system, enabling large-scale conductive prints at nanoscale resolution — used to create micro-electronic and <strong>GHz RF structures</strong> for DARPA grant proposals.</li>
-            <li>Assisted in the design and validation of an <strong>optical measurement system</strong> for insertion loss &amp; beam quality of printed photonic waveguides, enabling data-driven optimization of print geometry and process conditions.</li>
-            <li>Co-led automation of post-processing with an <strong>Opentrons OT-2</strong> — custom 3D-printed fixtures and reagent-compatibility validation that cut experimental turnaround from a week to ~3 days; now used company-wide.</li>
-            <li>Researched and proposed a <strong>low-cost UV dicing</strong> process for the brittle nanoporous-glass scaffold — now Irradiant's <strong>standard operating procedure</strong> for precision cutting.</li>
+            <li>Joined the <strong>materials team</strong> supporting a <strong>$14M DARPA-funded</strong> program on the development of 3D non-planar microsystems — primary role: designing and printing conductive silver microstructures.</li>
+            <li>Became a primary operator of Irradiant's <strong>point-scan lithography system</strong>, and independently implemented a <strong>stitching feature</strong> (with companion visualizer &amp; full file-generation documentation) that enabled large multi-FOV prints — a capability that did not exist before my arrival.</li>
+            <li>Performed <strong>AFM &amp; SEM</strong> surface-roughness measurements at <strong>Harvard CNS</strong> that directly secured a <strong>$1.8M DARPA milestone</strong>; processed and analyzed data in Gwyddion and Fiji.</li>
+            <li>Co-led automation of post-processing with an <strong>Opentrons OT-2</strong> — designed and 3D-printed custom hardware fixtures, validated chemical compatibility with our reagents, and reduced experimental turnaround from <strong>one week to three days</strong>. The rig is now used company-wide.</li>
+            <li>Researched and proposed a <strong>low-cost UV dicing</strong> process for our brittle nanoporous-glass scaffold — independent investigation that became Irradiant's <strong>standard operating procedure</strong> for precision cutting across the company.</li>
+            <li>Developed novel <strong>semiconductor packaging</strong> methods for proprietary nano-porous scaffold materials — pushed yield &amp; throughput <strong>10×</strong> and helped land a <strong>$500K Coherent contract</strong>.</li>
+            <li>Designed and printed <strong>RF antennas</strong> as demonstrators for a new government grant application; the designs continue to be used across grant submissions.</li>
+            <li>Owned the <strong>optical design implementation</strong> for a large customer-facing project alongside the metrology &amp; optics teams — built a system to measure photonic-waveguide insertion losses and contributed to corrective optics shipping into <strong>Nvidia, Coherent, and Corning</strong> data-center products.</li>
             <li>Co-authored a low-cost open-access <strong>two-photon lithography</strong> system for academic research (ResearchGate).</li>
           </ul>
           <div class="exp__tags">
-            <span>DARPA AMME</span><span>AFM</span><span>SEM</span><span>Harvard CNS</span><span>Point-scan DLW</span><span>Stitching</span><span>Silver materials</span><span>GHz RF</span><span>Photonic waveguides</span><span>Opentrons</span><span>UV dicing</span><span>Gwyddion</span><span>Fiji</span>
+            <span>DARPA</span><span>AFM</span><span>SEM</span><span>Harvard CNS</span><span>Point-scan DLW</span><span>Stitching</span><span>Opentrons</span><span>UV dicing</span><span>RF antennas</span><span>Optics</span><span>Gwyddion</span><span>Fiji</span>
           </div>
 
           <div class="exp__ref-block">
@@ -306,19 +425,19 @@
         <div class="exp__brief">
           <h3 class="exp__role">Assembly Process Intern</h3>
           <p class="exp__company">C2MI <span class="sep">/</span> <span class="loc">Bromont, Quebec</span></p>
-          <p class="exp__summary">Photonic wire bonds, a <strong>laser-induced graphene</strong> PCB process, and wafer-level packaging in a <strong>Class 1000 cleanroom</strong> — photonic-interconnect R&amp;D in collaboration with <strong>IBM</strong>.</p>
+          <p class="exp__summary">Photonic wire bonds, wafer-level packaging, and laser-induced graphene in a <strong>Class 1000 cleanroom</strong> — IBM collaboration with <strong>+20%</strong> optical performance.</p>
         </div>
         <span class="exp__cue" aria-hidden="true"><span>Open</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <template class="exp__details">
           <ul class="exp__bullets">
-            <li>Performed microfabrication and testing in a <strong>Class 1000 cleanroom</strong> using semiconductor and optical packaging tools.</li>
-            <li>R&amp;D on <strong>photonic wire bonds</strong> as an alternative photonic-interconnect method in collaboration with <strong>IBM</strong>; designed a photonic waveguide chip in <strong>KLayout</strong> to test insertion losses of optical interconnects.</li>
-            <li>Developed a <strong>laser-induced graphene (LIG)</strong> process for PCB manufacturing — enabling flexible, high-conductivity electroplating on <strong>sub-mm traces</strong> comparable to bulk electrodes.</li>
-            <li>Documented and tested a <strong>wafer-level packaging</strong> method to embed chips into remolded wafers, enabling further processing and higher package density.</li>
+            <li>Performed microfabrication and testing in a <strong>Class 1000 cleanroom</strong> on semiconductor and optical packaging tools.</li>
+            <li>R&amp;D on photonic wire bonds as an alternative interconnect method — in collaboration with IBM. <strong>+20%</strong> optical performance.</li>
+            <li>Created a procedure for laser-induced graphene patterns for electroplating as a novel PCB-creation method.</li>
+            <li>Documented &amp; tested wafer-level packaging — embedding chips into remolded wafers for higher package density.</li>
             <li>Characterized materials &amp; assembly quality via microscopy, spectroscopy, and electro-mechanical analysis.</li>
           </ul>
           <div class="exp__tags">
-            <span>Cleanroom</span><span>Photonic wire bonds</span><span>KLayout</span><span>LIG</span><span>Wafer-level packaging</span><span>IBM collab</span>
+            <span>Cleanroom</span><span>Photonic wire bonds</span><span>Wafer-level packaging</span><span>IBM collab</span>
           </div>
 
           <div class="exp__ref-block">
@@ -428,7 +547,8 @@
   <section id="skills" data-section="skills" data-screen-label="Skills" class="reveal">
     <div class="section-head">
       <div>
-        <h2 class="section-head__title">Skills</h2>
+        <div class="section-head__num">§ 03 · STACK</div>
+        <h2 class="section-head__title">Tools of the <em>trade</em>.</h2>
       </div>
       <div class="section-head__right">
 </div>
@@ -436,45 +556,45 @@
 
     <div class="skills">
       <div class="skill-cat">
-        <h3>Lab Experience</h3>
+        <h3><span class="ix">01</span> Lab Equipment</h3>
         <ul>
-          <li>Photolithography</li><li>Wet / Dry Etching</li><li>Cleanroom Protocols</li>
-          <li>Organic Chemistry</li><li>Optical Alignment</li><li>Laser Operation &amp; Safety</li>
-        </ul>
-      </div>
-      <div class="skill-cat">
-        <h3>Lab Equipment</h3>
-        <ul>
-          <li>AFM</li><li>SEM</li><li>2-Photon DLW</li><li>XRD</li><li>PECVD</li><li>RIE</li>
-          <li>Microscopy</li><li>UV-Vis</li><li>FTIR</li><li>Raman</li><li>Ellipsometer</li>
+          <li>AFM</li><li>SEM</li><li>XRD</li><li>Microscopy</li>
+          <li>UV-Vis</li><li>FTIR</li><li>Raman</li>
           <li>TMA</li><li>TGA</li><li>DSC</li>
         </ul>
       </div>
       <div class="skill-cat">
-        <h3>Software &amp; Simulation</h3>
+        <h3><span class="ix">02</span> Lab Experience</h3>
+        <ul>
+          <li>Bio / Organic chemistry</li><li>Cleanroom protocols</li>
+          <li>Optical alignment</li><li>Laser operation &amp; safety</li>
+        </ul>
+      </div>
+      <div class="skill-cat">
+        <h3><span class="ix">03</span> Software</h3>
         <ul>
           <li>SolidWorks</li><li>AutoCAD</li><li>Fusion</li><li>FEMM</li>
           <li>KLayout</li><li>KiCAD</li><li>Gwyddion</li><li>ImageJ/Fiji</li>
         </ul>
       </div>
       <div class="skill-cat">
-        <h3>Hardware</h3>
-        <ul>
-          <li>Arduino</li><li>STM32</li><li>ESP32</li><li>GD32F2</li>
-          <li>Raspberry Pi</li><li>CNC systems</li>
-        </ul>
-      </div>
-      <div class="skill-cat">
-        <h3>Programming</h3>
+        <h3><span class="ix">04</span> Programming</h3>
         <ul>
           <li>Python</li><li>MATLAB</li><li>Excel VBA</li>
-          <li>C++</li><li>HTML</li><li>CSS</li>
+          <li>C++</li><li>HTML</li><li>CSS</li><li>Arduino</li>
         </ul>
       </div>
       <div class="skill-cat">
-        <h3>Languages</h3>
+        <h3><span class="ix">05</span> Trade</h3>
         <ul>
-          <li>English (fluent)</li><li>French (DELF Certified)</li>
+          <li>Welding</li><li>Metallurgy</li><li>Carpentry</li>
+          <li>Electrical</li><li>Automotive</li>
+        </ul>
+      </div>
+      <div class="skill-cat">
+        <h3><span class="ix">06</span> Languages</h3>
+        <ul>
+          <li>English (fluent)</li><li>French (DELF B1)</li>
         </ul>
       </div>
     </div>
@@ -484,123 +604,72 @@
   <section id="projects" data-section="projects" data-screen-label="Projects" class="reveal">
     <div class="section-head">
       <div>
-        <h2 class="section-head__title">Projects &amp; Design Teams</h2>
+        <div class="section-head__num">§ 04 · PROJECTS &amp; DESIGN TEAMS</div>
+        <h2 class="section-head__title">Projects &amp; Design teams.</h2>
       </div>
-      <div class="section-head__right">Selected · 5 of 5 · click to expand</div>
+      <div class="section-head__right">
+</div>
     </div>
 
     <div class="projects">
-      <article class="project" data-expand role="button" tabindex="0" aria-label="Open OPU AFM for UW HackerFab">
-        <div class="project__thumb"><img src="media/opu_pdic_chip.webp" alt="PDIC chip die under optical microscope" loading="lazy" /></div>
-        <h3 class="project__title">OPU AFM <span class="project__affil">— UW HackerFab</span></h3>
+      <article class="project" data-expand role="button" tabindex="0" aria-label="Open UW Silica Integrated Optics">
+        <div class="project__num">01 / Co-founder · Dec 2023 — Ongoing</div>
+        <h3 class="project__title">UW Silica Integrated <em>Optics</em></h3>
         <p class="project__desc">
-          An in-progress atomic force microscope built from an optical pickup unit (OPU),
-          for the UW HackerFab.
+          Co-founded an official UWaterloo design team for Nanotechnology Engineering
+          students — integrated-photonics R&amp;D and a high-speed programmable
+          laser-shutter system for two-photon lithography.
         </p>
         <span class="project__cue" aria-hidden="true"><span>Open</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <template class="project__details">
-          <figure class="project__figure">
-            <img src="media/opu_pdic_chip.webp" alt="PDIC photodiode IC die under optical microscope" loading="lazy" />
-            <figcaption>PDIC (photodiode IC) die — the optical sensing core, recovered from an optical pickup unit of a Panasonic DVD-S43.</figcaption>
-          </figure>
-
-          <p class="slideout__section-label">Overview</p>
-          <p class="slideout__para">An in-progress project for UW HackerFab: building an atomic force microscope (AFM) around a low-cost optical pickup unit (OPU) out of a salvaged DVD player as the sensing core.</p>
-
-          <p class="slideout__note">More images to come as the build progresses.</p>
-
-          <div class="project__tags">
-            <span>AFM</span><span>OPU</span><span>Metrology</span><span>HackerFab</span><span>In progress</span>
-          </div>
-        </template>
-      </article>
-
-      <article class="project" data-expand role="button" tabindex="0" aria-label="Open Clap-Activated Light Sensor Switch">
-        <div class="project__thumb"><img src="media/clap_breadboard.webp" alt="Clap-activated light switch prototype on a breadboard" loading="lazy" /></div>
-        <h3 class="project__title">Clap-Activated Light Sensor Switch <span class="project__affil">— Personal</span></h3>
-        <p class="project__desc">
-          A personal electronics build — a switch triggered by a clap and gated by
-          ambient light level.
-        </p>
-        <span class="project__cue" aria-hidden="true"><span>Open</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
-        <template class="project__details">
-          <div class="project__media">
-            <figure class="project__figure">
-              <img src="media/clap_breadboard.webp" alt="Clap-activated light switch prototype wired on a breadboard" loading="lazy" />
-              <figcaption>Breadboard prototype — microcontroller, microphone &amp; light sensor.</figcaption>
-            </figure>
-            <figure class="project__figure">
-              <img src="media/clap_cad.webp" alt="CAD model of the clap-switch actuator mechanism" loading="lazy" />
-              <figcaption>CAD model of the actuator mechanism.</figcaption>
-            </figure>
-          </div>
-
-          <div class="project__video">
-            <video controls playsinline preload="metadata" poster="">
-              <source src="media/clap-switch.mp4" type="video/mp4" />
-            </video>
-            <p class="project__video-cap">▶ Short demo of the clap-activated light switch</p>
+          <div class="project__visual project__visual--logo project__visual--uwsio">
+            <img src="images/uwsio_logo.png" alt="University of Waterloo Silica Integrated Optics logo" />
           </div>
 
           <p class="slideout__section-label">Overview</p>
           <p class="slideout__para">
-            A personal electronics project: a <strong>clap-activated switch</strong> combined
-            with a <strong>light sensor</strong>, so only a specifically calibrated sound will
-            trigger the motor to actuate the switch.
+            Co-founded an official University of Waterloo design team aimed specifically
+            at Nanotechnology Engineering students. The team focuses on integrated
+            photonics research and development, providing hands-on experience that
+            bridges the gap between theoretical knowledge and practical applications.
           </p>
 
-          <div class="project__tags">
-            <span>Electronics</span><span>Sensors</span><span>Microcontroller</span><span>Personal build</span>
-          </div>
-        </template>
-      </article>
-
-      <article class="project" data-expand role="button" tabindex="0" aria-label="Open Laser-Induced Graphene PCBs">
-        <div class="project__thumb project__thumb--logo"><img src="https://martin-bissonnette.github.io/Portfolio-Website/images/c2mi_logo.png" alt="C2MI logo" loading="lazy" /></div>
-        <h3 class="project__title">Laser-Induced Graphene PCBs <span class="project__affil">— C2MI</span></h3>
-        <p class="project__desc">
-          LIG + electroplating to make arbitrary PCB shapes and flexible circuits —
-          carbonizing polymer substrates with an IR laser, then electroplating to
-          bulk conductivity.
-        </p>
-        <span class="project__cue" aria-hidden="true"><span>Open</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
-        <template class="project__details">
-          <p class="slideout__section-label">Overview</p>
+          <p class="slideout__section-label">Leadership Role</p>
           <p class="slideout__para">
-            A self-directed side project carried out at <strong>C2MI</strong>, exploring
-            <strong>laser-induced graphene (LIG) + electroplating</strong> as a route to
-            arbitrary PCB shapes and flexible circuits — without conventional masks,
-            etching, or rigid copper-clad laminate.
+            As co-founder, I established the team structure, recruited members, and
+            defined research objectives. Led the initiative to gain <strong>official
+            university recognition</strong> and access to laboratory facilities at the
+            University of Waterloo.
           </p>
 
-          <p class="slideout__section-label">Process</p>
-          <p class="slideout__para">
-            Using an <strong>IR laser</strong>, we carbonized targeted areas of a range of
-            polymer substrates, converting them into conductive graphite/graphene traces.
-            These regions were then promptly selectively <strong>electroplated</strong> to build
-            them up to usable, bulk-metal conductivity on the arbitrary shapes of the
-            substrates and maintained their flexible properties without breaking the traces.
-          </p>
-
-          <p class="slideout__section-label">Preliminary Results</p>
+          <p class="slideout__section-label">Technical Projects</p>
           <ul class="exp__bullets">
-            <li>Achieved <strong>bulk conductivities</strong> on plated traces in early testing.</li>
-            <li>Reached a minimum trace width of <strong>0.5&nbsp;mm</strong> all in preliminary trials.</li>
-            <li>Demonstrated the approach across multiple polymer substrates (resin wafers, Kapton/polyimide tapes).</li>
-            <li>Showed a viable path to <strong>flexible circuits</strong> and arbitrary board geometries.</li>
+            <li>Led research and fabrication of a <strong>high-speed programmable laser-shutter system</strong> using Arduino and custom hardware components.</li>
+            <li>Actively working in the optics lab running <strong>DOEs (design of experiments)</strong> to find optimal laser parameters for desired voxel creation.</li>
+            <li>Developing techniques for <strong>voxel creation inside of bulk SiO2</strong>.</li>
+            <li>Establishing laboratory protocols and safety procedures for team operations.</li>
           </ul>
 
-          <p class="slideout__note">No images — this work was done internally at C2MI.</p>
+          <p class="slideout__section-label">Impact</p>
+          <p class="slideout__para">
+            Provides invaluable hands-on experience for nanotechnology engineering
+            students — fostering innovation and practical skills development in the
+            field of integrated photonics, and feeding new process recipes back into
+            the university's 2PP workflows.
+          </p>
+
+          <p class="slideout__section-label">Timeline</p>
+          <p class="slideout__para">December 2023 — Ongoing</p>
 
           <div class="project__tags">
-            <span>LIG</span><span>Electroplating</span><span>IR laser</span><span>Flexible circuits</span><span>PCB</span><span>R&amp;D</span>
+            <span>Photonics</span><span>Research lead</span><span>Arduino</span><span>DLW</span><span>Two-photon lithography</span><span>Leadership</span>
           </div>
         </template>
       </article>
 
       <article class="project" data-expand role="button" tabindex="0" aria-label="Open Waterloop Hyperloop design team">
-        <div class="project__thumb project__thumb--logo is-dark"><img src="media/waterloop_logo.png" alt="Waterloop logo" loading="lazy" /></div>
-        <h3 class="project__title">Transverse Flux Motor Development <span class="project__affil">— Waterloop</span></h3>
+        <div class="project__num">02 / Propulsion team · Sep 2023 — Jan 2024</div>
+        <h3 class="project__title">Waterloop — <em>Transverse Flux Motor</em> Development</h3>
         <p class="project__desc">
           Collaborated with Waterloop's propulsion team to design and manufacture
           transverse-flux motors (TFMs) for hyperloop technology demonstrations.
@@ -608,7 +677,7 @@
         <span class="project__cue" aria-hidden="true"><span>Open</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <template class="project__details">
           <div class="project__visual project__visual--logo project__visual--waterloop">
-            <img src="media/waterloop_logo.png" alt="Waterloop logo" />
+            <img src="images/waterloop_logo.png" alt="Waterloop logo" />
           </div>
 
           <p class="slideout__section-label">Overview</p>
@@ -644,68 +713,8 @@
           <p class="slideout__section-label">Duration</p>
           <p class="slideout__para">September 2023 — January 2024</p>
 
-          <figure class="project__figure">
-            <img src="media/waterloop_stator_core.jpg" alt="One of three TFM stator cores with its first hand-wound copper coil" loading="lazy" />
-            <figcaption>One of three stator cores with its first coil wound — the full assembly drove a levitation demo illustrating key hyperloop principles.</figcaption>
-          </figure>
-
           <div class="project__tags">
             <span>Electric motors</span><span>TFM</span><span>Manufacturing</span><span>CAD</span><span>Team collaboration</span><span>Hyperloop</span>
-          </div>
-        </template>
-      </article>
-
-      <article class="project" data-expand role="button" tabindex="0" aria-label="Open UW Silica Integrated Optics">
-        <div class="project__thumb project__thumb--logo"><img src="media/uwsio_logo.png" alt="UW Silica Integrated Optics logo" loading="lazy" /></div>
-        <h3 class="project__title">UW Silica Integrated Optics <span class="project__affil">— UW Design Team</span></h3>
-        <p class="project__desc">
-          Co-founded an official UWaterloo design team for Nanotechnology Engineering
-          students — integrated-photonics R&amp;D and a high-speed programmable
-          laser-shutter system for two-photon lithography.
-        </p>
-        <span class="project__cue" aria-hidden="true"><span>Open</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
-        <template class="project__details">
-          <div class="project__visual project__visual--logo project__visual--uwsio">
-            <img src="media/uwsio_logo.png" alt="University of Waterloo Silica Integrated Optics logo" />
-          </div>
-
-          <p class="slideout__section-label">Overview</p>
-          <p class="slideout__para">
-            Co-founded an official University of Waterloo design team aimed specifically
-            at Nanotechnology Engineering students. The team focuses on integrated
-            photonics research and development, providing hands-on experience that
-            bridges the gap between theoretical knowledge and practical applications.
-          </p>
-
-          <p class="slideout__section-label">Leadership Role</p>
-          <p class="slideout__para">
-            As co-founder, I established the team structure, recruited members, and
-            defined research objectives. Led the initiative to gain <strong>official
-            university recognition</strong> and access to laboratory facilities at the
-            University of Waterloo.
-          </p>
-
-          <p class="slideout__section-label">Technical Projects</p>
-          <ul class="exp__bullets">
-            <li>Led research and fabrication of a <strong>high-speed programmable laser-shutter system</strong> using Arduino and custom hardware components.</li>
-            <li>Ran <strong>DOEs (design of experiments)</strong> in the optics lab to find optimal laser parameters for desired voxel creation.</li>
-            <li>Developed techniques for <strong>voxel creation inside of bulk SiO2</strong>.</li>
-            <li>Established laboratory protocols and safety procedures for team operations.</li>
-          </ul>
-
-          <p class="slideout__section-label">Impact</p>
-          <p class="slideout__para">Provided invaluable hands-on experience for nanotechnology engineering students, fostering innovation and practical skills development in the field of integrated photonics, and feeding new process recipes back into the university's femto-second laser workflows.</p>
-
-          <p class="slideout__section-label">Timeline</p>
-          <p class="slideout__para">December 2023 — May 2026</p>
-
-          <figure class="project__figure">
-            <img src="media/uwsio_first_voxels.jpeg" alt="First voxels written inside bulk SiO2 — diamond-lattice array under optical microscope" loading="lazy" />
-            <figcaption>First voxels written inside bulk SiO₂ — optical microscope with 40x objective.</figcaption>
-          </figure>
-
-          <div class="project__tags">
-            <span>Photonics</span><span>Research lead</span><span>Arduino</span><span>DLW</span><span>Two-photon lithography</span><span>Leadership</span>
           </div>
         </template>
       </article>
@@ -716,7 +725,8 @@
   <section id="education" data-section="education" data-screen-label="Education & Awards" class="reveal">
     <div class="section-head">
       <div>
-        <h2 class="section-head__title">Education &amp; Awards</h2>
+        <div class="section-head__num">§ 05 · EDUCATION &amp; AWARDS</div>
+        <h2 class="section-head__title">School &amp; <em>scholarships</em>.</h2>
       </div>
       <div class="section-head__right">2023 — present</div>
     </div>
@@ -838,6 +848,6 @@
   </div>
 </aside>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

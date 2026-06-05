@@ -7,7 +7,7 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
   "accent": "blue",
   "density": "airy",
   "hero": "default",
-  "sectionOrder": ["experience", "skills", "projects", "education"]
+  "sectionOrder": ["about", "experience", "skills", "projects", "education"]
 }/*EDITMODE-END*/;
 
 /* ============================================================
@@ -16,7 +16,7 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
 const root = document.documentElement;
 const savedTheme = localStorage.getItem("mb-theme");
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-const initialTheme = savedTheme || "light";
+const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
 root.setAttribute("data-theme", initialTheme);
 
 const themeToggle = document.querySelector("[data-theme-toggle]");
@@ -325,7 +325,7 @@ function buildReorder() {
   const host = document.querySelector("[data-reorder]");
   if (!host) return;
   const labels = {
-    experience: "Experience", skills: "Skills",
+    about: "About", experience: "Experience", skills: "Skills",
     projects: "Projects & Design Teams", education: "Education & Awards",
   };
   function render() {
