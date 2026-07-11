@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pkill -f \"http.server 8842\")",
+      "Bash(python3 -m http.server 8843 >/tmp/server2.log 2>&1 & *)",
+      "Bash(pkill -f \"http.server 8843\")"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  }
+}

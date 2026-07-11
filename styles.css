@@ -808,28 +808,8 @@ section + section { border-top: 1px dashed var(--line-soft); }
 .exp__logo--c2mi      { background: #ffffff; }
 .exp__logo--lactalis  { background: #ffffff; }
 [data-theme="dark"] .exp__logo--lactalis img { filter: none; }
-.exp__logo--smart {
-  background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 22%, var(--bg-2)), var(--bg-2));
-  color: var(--fg-em);
-}
-.exp__logo-mark {
-  font-family: "Instrument Serif", serif;
-  font-size: 26px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  color: var(--fg-em);
-  display: inline-flex;
-  align-items: baseline;
-  gap: 4px;
-}
-.exp__logo-mark span {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
+.exp__logo--smart     { background: #ffffff; padding: 0; }
+.exp__logo--smart img { object-fit: contain; width: 95%; height: 95%; }
 .exp__role {
   font-family: "Instrument Serif", serif;
   font-size: clamp(24px, 2.8vw, 38px);
